@@ -379,7 +379,7 @@ body {
 }
 
 /* Alternate layout every other card */
-.memory-card:nth-child(even) .card-inner {
+.memory-card.flip .card-inner {
   flex-direction: row-reverse;
 }
 
@@ -575,6 +575,19 @@ body {
 .card-last .card-inner {
   background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
   border-color: transparent;
+  flex-direction: column;
+  text-align: center;
+}
+
+.card-last .image-thumb-wrap {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.card-last .image-thumb {
+  width: 100%;
+  height: 400px;
 }
 
 .card-last .card-inner::before {
@@ -637,7 +650,7 @@ body {
 
 .heart-anim {
   font-size: 2.5rem;
-  color: #c0392b;
+  color: #b5636e;
   display: block;
   margin-bottom: 30px;
   animation: heartBeat 2.4s ease-in-out infinite;
@@ -668,7 +681,7 @@ body {
   font-weight: 300;
   font-style: italic;
   color: var(--ink);
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .closing-sub {
@@ -678,7 +691,7 @@ body {
   color: var(--ink-soft);
   font-style: italic;
   line-height: 1.7;
-  margin-bottom: 50px;
+  margin-bottom: 4px;
 }
 
 .year-count {
@@ -844,11 +857,11 @@ footer {
     transform 0.8s var(--ease-silk) 0.25s;
 }
 
-.memory-card:nth-child(even).hidden .image-thumb-wrap {
+.memory-card.flip.hidden .image-thumb-wrap {
   transform: translateX(40px) rotate(2deg);
 }
 
-.memory-card:nth-child(even).hidden .text-block {
+.memory-card.flip.hidden .text-block {
   transform: translateX(-30px);
 }
 
@@ -869,7 +882,7 @@ footer {
 
   /* NEW: Center the content inside the cards */
   .card-inner,
-  .memory-card:nth-child(even) .card-inner {
+  .memory-card.flip .card-inner {
     flex-direction: column !important;
     padding: 24px;
     gap: 28px;
