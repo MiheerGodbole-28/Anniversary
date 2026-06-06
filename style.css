@@ -637,7 +637,7 @@ body {
 
 .heart-anim {
   font-size: 2.5rem;
-  color: var(--white);
+  color: #c0392b;
   display: block;
   margin-bottom: 30px;
   animation: heartBeat 2.4s ease-in-out infinite;
@@ -896,6 +896,15 @@ footer {
 
   .hero h1 {
     font-size: 4rem;
+  }
+
+  .stats-inner {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .stat-sep {
+    display: none;
   }
 }
 
