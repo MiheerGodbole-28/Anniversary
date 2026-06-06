@@ -981,6 +981,43 @@ footer {
   z-index: 2;
   padding: 40px 0 80px;
   overflow: hidden;
+  text-align: center;
+}
+
+.gallery-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding: 0 24px;
+}
+
+.gallery-heading h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.gallery-heading h2::before,
+.gallery-heading h2::after {
+  content: " ◆ ";
+  font-style: normal;
+  font-size: 0.6rem;
+  color: var(--rose-gold);
+  vertical-align: middle;
+  opacity: 0.8;
+}
+
+.gallery-rule {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-soft), transparent);
+  opacity: 0.4;
 }
 
 .gallery-viewport {
