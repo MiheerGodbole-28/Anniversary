@@ -240,47 +240,85 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ——————————————————————————
-  //  7. MANUAL CAROUSEL DRAGGING
-  // ——————————————————————————
-  const viewport = document.querySelector(".gallery-viewport");
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-  let resumeTimer;
+//  7. MANUAL CAROUSEL DRAGGING
+// ——————————————————————————
+const viewport = document.querySelector(".gallery-viewport");
+const track = document.querySelector(".gallery-track");
 
-  viewport.addEventListener("mousedown", (e) => {
-    isDown = true;
-    viewport.classList.add("manual-mode");
-    clearTimeout(resumeTimer);
-    startX = e.pageX - viewport.offsetLeft;
-    scrollLeft = viewport.scrollLeft;
-  });
+let isDragging = false;
+let startX = 0;
+let currentTranslate = 0;
+let dragStartTranslate = 0;
+let resumeTimer;
 
-  viewport.addEventListener("mouseleave", () => {
-    isDown = false;
-    resumeTimer = setTimeout(() => viewport.classList.remove("manual-mode"), 3000);
-  });
+// Get the current translateX value from the animation mid-flight
+function getCurrentTranslate() {
+  const style = window.getComputedStyle(track);
+  const matrix = new DOMMatrix(style.transform);
+  return matrix.m41; // The X translation value
+}
 
-  viewport.addEventListener("mouseup", () => {
-    isDown = false;
-    resumeTimer = setTimeout(() => viewport.classList.remove("manual-mode"), 3000);
-  });
+function startDrag(pageX) {
+  isDragging = true;
+  clearTimeout(resumeTimer);
 
-  viewport.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - viewport.offsetLeft;
-    const walk = (x - startX) * 2;
-    viewport.scrollLeft = scrollLeft - walk;
-  });
+  // Freeze the animation exactly where it is
+  currentTranslate = getCurrentTranslate();
+  track.style.animation = "none";
+  track.style.transform = `translateX(${currentTranslate}px) translateZ(0)`;
 
-  // Touch support for phones
-  viewport.addEventListener("touchstart", () => {
-    viewport.classList.add("manual-mode");
-    clearTimeout(resumeTimer);
-  });
+  startX = pageX;
+  dragStartTranslate = currentTranslate;
+  viewport.classList.add("manual-mode");
+}
 
-  viewport.addEventListener("touchend", () => {
-    resumeTimer = setTimeout(() => viewport.classList.remove("manual-mode"), 3000);
-  });
+function moveDrag(pageX) {
+  if (!isDragging) return;
+  const delta = pageX - startX;
+  const halfWidth = track.scrollWidth / 2;
+
+  let newTranslate = dragStartTranslate + delta;
+
+  // Keep translate within the looping bounds
+  if (newTranslate > 0) newTranslate -= halfWidth;
+  if (newTranslate < -halfWidth) newTranslate += halfWidth;
+
+  currentTranslate = newTranslate;
+  track.style.transform = `translateX(${currentTranslate}px) translateZ(0)`;
+}
+
+function endDrag() {
+  if (!isDragging) return;
+  isDragging = false;
+
+  // Resume the CSS animation from the current position after a delay
+  resumeTimer = setTimeout(() => {
+    viewport.classList.remove("manual-mode");
+
+    // Calculate where we are as a % of the half-width (for seamless loop resume)
+    const halfWidth = track.scrollWidth / 2;
+    const progress = Math.abs(currentTranslate) / halfWidth;
+
+    // Remove inline styles and let the animation take back over
+    track.style.transform = "";
+    track.style.animation = "";
+    track.style.animationDelay = `-${progress * 20}s`; // 20s = your animation duration
+
+    // Clean up the delay after one tick so it doesn't persist
+    requestAnimationFrame(() => {
+      setTimeout(() => { track.style.animationDelay = ""; }, 50);
+    });
+  }, 2500);
+}
+
+// Mouse events
+viewport.addEventListener("mousedown", (e) => startDrag(e.pageX));
+window.addEventListener("mousemove", (e) => { if (isDragging) { e.preventDefault(); moveDrag(e.pageX); } });
+window.addEventListener("mouseup", endDrag);
+viewport.addEventListener("mouseleave", () => { if (!isDragging) return; }); // don't kill drag on mouseleave
+
+// Touch events
+viewport.addEventListener("touchstart", (e) => startDrag(e.touches[0].pageX), { passive: true });
+viewport.addEventListener("touchmove", (e) => moveDrag(e.touches[0].pageX), { passive: true });
+viewport.addEventListener("touchend", endDrag);
 });

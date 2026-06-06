@@ -980,19 +980,17 @@ footer {
   cursor: grab;
 }
 
-/* When dragging, allow scroll and stop the animation */
 .gallery-viewport.manual-mode {
-  overflow-x: auto;
   cursor: grabbing;
 }
 
 .gallery-viewport.manual-mode .gallery-track {
-  animation: none !important;
-  transform: none !important; /* Prevents the jump */
+  animation-play-state: paused !important;
 }
-
 /* Hide scrollbar */
-.gallery-viewport::-webkit-scrollbar { display: none; }
+.gallery-viewport::-webkit-scrollbar {
+  display: none;
+}
 
 .gallery-track {
   display: flex;
@@ -1008,8 +1006,12 @@ footer {
 }
 
 @keyframes scrollGallery {
-  from { transform: translateX(0) translateZ(0); }
-  to   { transform: translateX(-50%) translateZ(0); }
+  from {
+    transform: translateX(0) translateZ(0);
+  }
+  to {
+    transform: translateX(-50%) translateZ(0);
+  }
 }
 
 .gallery-item {
