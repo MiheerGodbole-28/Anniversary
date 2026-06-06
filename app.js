@@ -152,4 +152,90 @@ document.addEventListener("DOMContentLoaded", () => {
       inner.style.transform = "";
     });
   });
+
+  // ——————————————————————————
+  //  6. STATS NUMBER ROLLER (CALENDAR DROP EFFECT)
+  // ——————————————————————————
+  const statsSection = document.querySelector(".stats-bar");
+  const statNums = document.querySelectorAll(".stat-num");
+  let statsAnimated = false;
+
+  if (statsSection && statNums.length > 0) {
+    const statsObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !statsAnimated) {
+          statsAnimated = true;
+
+          statNums.forEach((numContainer, index) => {
+            const targetStr = numContainer.getAttribute("data-target");
+            const formattedTarget = Number(targetStr).toLocaleString();
+
+            // Clean out the container and set up flexbox layout
+            numContainer.innerHTML = "";
+            numContainer.style.display = "inline-flex";
+            numContainer.style.lineHeight = "1";
+
+            // Split the target into individual digits/commas
+            formattedTarget.split("").forEach((char, charIndex) => {
+              if (isNaN(char)) {
+                // It's a comma — keep it static
+                const comma = document.createElement("span");
+                comma.textContent = char;
+                comma.style.display = "inline-flex";
+                comma.style.height = "1em";
+                comma.style.alignItems = "center";
+                numContainer.appendChild(comma);
+              } else {
+                // It's a number — create the rolling calendar window
+                const digitWrap = document.createElement("span");
+                digitWrap.style.display = "inline-flex";
+                digitWrap.style.flexDirection = "column";
+                digitWrap.style.height = "1em";
+                digitWrap.style.overflow = "hidden"; // Hides the extra numbers
+                digitWrap.style.verticalAlign = "top";
+
+                const track = document.createElement("span");
+                track.style.display = "flex";
+                track.style.flexDirection = "column";
+
+                // "Fall from above" means the track moves DOWN.
+                // So the final target number goes at the very TOP of the track.
+                const spins = 12 + charIndex * 2; // Later digits roll for longer
+                let trackHTML = `<span style="height: 1em; display: flex; align-items: center; justify-content: center;">${char}</span>`;
+
+                // Add random dummy numbers underneath it to create the "roll"
+                for (let i = 0; i < spins; i++) {
+                  const rand = Math.floor(Math.random() * 10);
+                  trackHTML += `<span style="height: 1em; display: flex; align-items: center; justify-content: center;">${rand}</span>`;
+                }
+
+                track.innerHTML = trackHTML;
+                digitWrap.appendChild(track);
+                numContainer.appendChild(digitWrap);
+
+                // Start position: shifted all the way UP, viewing the bottom of the track
+                track.style.transform = `translateY(-${spins}em)`;
+
+                // Force the browser to register this start position
+                track.getBoundingClientRect();
+
+                // Animate pulling the track DOWN to zero, letting numbers fall from above
+                setTimeout(
+                  () => {
+                    // Custom 'heavy roll' easing curve: starts fast, lands very softly
+                    track.style.transition = `transform ${3.5 + charIndex * 0.3}s cubic-bezier(0.16, 1, 0.3, 1)`;
+                    track.style.transform = `translateY(0)`;
+                  },
+                  150 + index * 150,
+                ); // Stagger each whole block (35, then 12,784, then 1)
+              }
+            });
+          });
+        }
+      },
+      { threshold: 0.4 },
+    );
+
+    statsObserver.observe(statsSection);
+  }
 });
