@@ -1,0 +1,964 @@
+/* =========================================
+   35 YEARS OF LOVE — ANNIVERSARY WEBSITE
+   Theme: Vibrant Sunset & Warm Linen
+   ========================================= */
+
+:root {
+  /* Warm, soft off-white background */
+  --cream: #baf5ff;
+  /* Soft peach for image placeholders */
+  --parchment: #b9fdff;
+  /* Vibrant, bright coral */
+  --rose-gold: #004c63;
+  /* Vibrant sunset orange/gold */
+  --gold: #660000;
+  --gold-light: #bcd7ff;
+  --mauve: #e0c585;
+  /* Vibrant pinkish-orange */
+  --mauve-deep: #ffd7b5;
+  /* Dark warm-brown for text (much easier on the eyes than black) */
+  --ink: #23363d;
+  --ink-soft: #6e4c47;
+  /* A warm, slightly tinted linen instead of stark, blinding white */
+  --white: #fae5d0;
+  --shadow-warm: rgba(61, 38, 35, 0.08);
+
+  --ff-display: "Cormorant Garamond", Georgia, serif;
+  --ff-body: "Jost", sans-serif;
+
+  --ease-silk: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---- RESET ---- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--ff-body);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* =========================================
+   FLOATING PETALS
+   ========================================= */
+.petals-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -60px;
+  font-size: 1rem;
+  opacity: 0;
+  animation: petalFall linear infinite;
+  user-select: none;
+}
+
+@keyframes petalFall {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg) scale(0.8);
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(110vh) rotate(720deg) scale(1.1);
+  }
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 620px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 231, 183, 0.9) 0%,
+      rgba(63, 212, 249, 0.85) 100%
+    ),
+    url("placeholder-background.jpg") center/cover no-repeat;
+  overflow: hidden;
+}
+
+/* Grain texture overlay */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 70%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 0 20px;
+}
+
+/* Fade-in sequence for hero children */
+.fade-seq {
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-silk) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-top-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.thin-rule {
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-soft), transparent);
+}
+
+.overline-text {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.hero h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 0.9;
+  letter-spacing: -1px;
+  margin-bottom: 18px;
+}
+
+.hero h1 em {
+  background: linear-gradient(135deg, #a33232, var(--ink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+.hero-sub {
+  font-family: var(--ff-display);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 300;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+.hero-divider {
+  margin: 22px 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.hero-caption {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+  font-style: italic;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.scroll-hint {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--ink-soft), transparent);
+  animation: scrollBob 2s ease-in-out infinite;
+}
+
+/* =========================================
+   INTRO QUOTE
+   ========================================= */
+.intro-quote {
+  background: linear-gradient(135deg, var(--rose-gold), var(--mauve-deep));
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.intro-quote blockquote {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.intro-quote blockquote p {
+  font-family: var(--ff-display);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.intro-quote blockquote cite {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* =========================================
+   TIMELINE
+   ========================================= */
+.timeline {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 60px 20px 100px;
+  position: relative;
+}
+
+/* The vertical line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--rose-gold) 5%,
+    var(--rose-gold) 95%,
+    transparent 100%
+  );
+  opacity: 0.8;
+}
+
+/* =========================================
+   YEAR MARKERS
+   ========================================= */
+.year-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 64px 0 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.year-marker::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--rose-gold);
+  margin-bottom: 10px;
+  box-shadow:
+    0 0 0 4px var(--cream),
+    0 0 0 6px var(--rose-gold);
+}
+
+.year-number {
+  font-family: var(--ff-display);
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--rose-gold);
+  line-height: 1;
+}
+
+.year-label {
+  font-family: var(--ff-body);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* =========================================
+   MEMORY CARDS
+   ========================================= */
+.memory-card {
+  margin-bottom: 72px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-inner {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  background: var(--white);
+  border-radius: 4px;
+  overflow: visible;
+  box-shadow:
+    0 2px 4px var(--shadow-warm),
+    0 20px 60px rgba(61, 38, 35, 0.08);
+  transition: box-shadow 0.4s var(--ease-silk);
+  padding: 40px;
+}
+
+.memory-card:hover .card-inner {
+  box-shadow:
+    0 2px 4px var(--shadow-warm),
+    0 30px 80px rgba(61, 38, 35, 0.14);
+}
+
+/* Alternate layout every other card */
+.memory-card:nth-child(even) .card-inner {
+  flex-direction: row-reverse;
+}
+
+/* Corner accent */
+.card-inner::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 28px;
+  right: 28px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--rose-gold),
+    transparent
+  );
+  border-radius: 2px;
+}
+
+/* =========================================
+   PHOTO THUMBNAIL
+   ========================================= */
+.image-thumb-wrap {
+  flex-shrink: 0;
+  width: 280px;
+  position: relative;
+}
+
+.image-thumb {
+  width: 280px;
+  height: 320px;
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  background: var(--parchment);
+  box-shadow:
+    0 4px 12px rgba(61, 38, 35, 0.15),
+    0 1px 2px rgba(61, 38, 35, 0.08);
+  transition:
+    transform 0.5s var(--ease-spring),
+    box-shadow 0.4s ease;
+}
+
+.image-thumb:hover {
+  transform: scale(1.03) rotate(-0.5deg);
+  box-shadow:
+    0 16px 40px rgba(61, 38, 35, 0.22),
+    0 2px 6px rgba(61, 38, 35, 0.1);
+}
+
+.image-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* NEW: Keeps faces visible if cropping is needed */
+  object-position: top center;
+  display: block;
+  transition: transform 0.6s var(--ease-silk);
+}
+
+.image-thumb:hover img {
+  transform: scale(1.07);
+}
+
+/* No-image placeholder */
+.image-thumb.no-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--parchment), var(--gold-light));
+}
+
+.image-thumb.no-img img {
+  display: none;
+}
+
+.image-thumb.no-img::after {
+  content: "📷";
+  font-size: 2.5rem;
+  opacity: 0.35;
+}
+
+/* Hover overlay */
+.thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(61, 38, 35, 0.65) 0%,
+    transparent 60%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 18px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.image-thumb:hover .thumb-overlay {
+  opacity: 1;
+}
+
+.zoom-icon {
+  font-size: 1.8rem;
+  color: var(--white);
+  transform: scale(0.7);
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.image-thumb:hover .zoom-icon {
+  transform: scale(1);
+}
+
+.zoom-label {
+  font-family: var(--ff-body);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-top: 4px;
+}
+
+/* Subtle drop shadow behind photo */
+.polaroid-shadow {
+  position: absolute;
+  bottom: -12px;
+  left: 6px;
+  right: -6px;
+  height: 40px;
+  background: rgba(61, 38, 35, 0.12);
+  filter: blur(12px);
+  border-radius: 50%;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+.image-thumb-wrap:hover .polaroid-shadow {
+  bottom: -18px;
+  filter: blur(16px);
+  opacity: 0.9;
+}
+
+/* =========================================
+   TEXT BLOCK
+   ========================================= */
+.text-block {
+  flex: 1;
+  padding: 10px 0;
+}
+
+.card-date {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  margin-bottom: 12px;
+}
+
+.text-block h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.text-block p {
+  font-family: var(--ff-body);
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.card-flourish {
+  margin-top: 24px;
+  font-size: 0.6rem;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+/* Last card — special treatment */
+.card-last .card-inner {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+  border-color: transparent;
+}
+
+.card-last .card-inner::before {
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.card-last .text-block h2 {
+  color: var(--gold-light);
+}
+.card-last .text-block p {
+  color: rgba(253, 246, 239, 0.85);
+}
+.card-last .card-date {
+  color: var(--rose-gold);
+}
+.card-last .card-flourish {
+  color: var(--gold-light);
+  opacity: 0.6;
+}
+
+/* =========================================
+   CLOSING SECTION
+   ========================================= */
+.closing {
+  background: linear-gradient(
+    160deg,
+    var(--gold-light) 0%,
+    var(--parchment) 50%,
+    var(--rose-gold) 100%
+  );
+  padding: 120px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.closing::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.closing-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.heart-anim {
+  font-size: 2.5rem;
+  color: var(--white);
+  display: block;
+  margin-bottom: 30px;
+  animation: heartBeat 2.4s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.18);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.12);
+  }
+  56% {
+    transform: scale(1);
+  }
+}
+
+.closing h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.closing-sub {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 50px;
+}
+
+.year-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.big-number {
+  font-family: var(--ff-display);
+  font-size: clamp(5rem, 15vw, 9rem);
+  font-weight: 600;
+  line-height: 0.85;
+  background: linear-gradient(135deg, #000000, black, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.big-label {
+  font-family: var(--ff-body);
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+  background: var(--ink);
+  padding: 32px 40px;
+  text-align: center;
+  font-family: var(--ff-body);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: rgba(253, 246, 239, 0.7);
+  text-transform: uppercase;
+}
+
+/* =========================================
+   LIGHTBOX
+   ========================================= */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(61, 38, 35, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(8px);
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transform: scale(0.88);
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.lightbox.open .lightbox-inner {
+  transform: scale(1);
+}
+
+.lightbox-inner img {
+  max-width: 85vw;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+#lb-caption {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(253, 246, 239, 0.8);
+  letter-spacing: 1px;
+}
+
+.lb-close {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  background: none;
+  border: 1px solid rgba(253, 246, 239, 0.4);
+  color: rgba(253, 246, 239, 0.9);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.lb-close:hover {
+  background: rgba(253, 246, 239, 0.2);
+  color: white;
+  border-color: rgba(253, 246, 239, 0.8);
+}
+
+/* =========================================
+   SCROLL ANIMATION — HIDDEN/SHOW
+   ========================================= */
+.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition:
+    opacity 0.9s var(--ease-silk),
+    transform 0.9s var(--ease-silk);
+}
+
+.year-marker.hidden {
+  transform: translateY(30px) scale(0.92);
+  transition:
+    opacity 0.7s var(--ease-silk),
+    transform 0.7s var(--ease-spring);
+}
+
+.hidden.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Card reveal: image and text come from different sides */
+.memory-card.hidden .image-thumb-wrap {
+  opacity: 0;
+  transform: translateX(-40px) rotate(-2deg);
+  transition:
+    opacity 0.8s var(--ease-silk) 0.1s,
+    transform 0.9s var(--ease-spring) 0.1s;
+}
+
+.memory-card.hidden .text-block {
+  opacity: 0;
+  transform: translateX(30px);
+  transition:
+    opacity 0.8s var(--ease-silk) 0.25s,
+    transform 0.8s var(--ease-silk) 0.25s;
+}
+
+.memory-card:nth-child(even).hidden .image-thumb-wrap {
+  transform: translateX(40px) rotate(2deg);
+}
+
+.memory-card:nth-child(even).hidden .text-block {
+  transform: translateX(-30px);
+}
+
+.memory-card.hidden.show .image-thumb-wrap,
+.memory-card.hidden.show .text-block {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+  /* NEW: Keep year markers properly spaced and centered */
+  .year-marker {
+    margin: 48px 0 24px;
+  }
+
+  /* NEW: Center the content inside the cards */
+  .card-inner,
+  .memory-card:nth-child(even) .card-inner {
+    flex-direction: column !important;
+    padding: 24px;
+    gap: 28px;
+    text-align: center;
+  }
+
+  /* NEW: Stop the thumbnail from becoming a massive horizontal banner */
+  .image-thumb-wrap {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* NEW: Give the photo a nice vertical ratio so people's faces fit */
+  .image-thumb {
+    width: 100%;
+    height: 380px;
+  }
+
+  .memory-card.hidden .image-thumb-wrap,
+  .memory-card:nth-child(even).hidden .image-thumb-wrap {
+    transform: translateY(20px);
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+  .card-inner {
+    padding: 18px;
+  }
+}
+
+/* =========================================
+   STATS BAR  (new section)
+   ========================================= */
+.stats-bar {
+  background: var(--ink);
+  padding: 52px 40px;
+  position: relative;
+  z-index: 1;
+  /* Subtle top sheen */
+  border-top: 1px solid rgba(220, 192, 133, 0.12);
+}
+
+.stats-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 300;
+  color: var(--gold-light);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -1px;
+}
+
+.stat-label {
+  font-family: var(--ff-body);
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(240, 228, 212, 0.38);
+}
+
+.stat-sep {
+  color: var(--rose-gold);
+  font-size: 0.45rem;
+  opacity: 0.45;
+  margin-top: -16px;
+  align-self: center;
+}

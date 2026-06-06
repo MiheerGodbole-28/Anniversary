@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>35 Years of Love</title>
+    <link rel="icon" href="logo.jpg" type="image/png">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Floating petals background -->
+    <div class="petals-container" id="petals"></div>
+
+    <!-- ========== HERO ========== -->
+    <header class="hero">
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-top-line fade-seq" style="--delay: 0.2s">
+          <span class="thin-rule"></span>
+          <span class="overline-text">June 8th, 1991 — June 8th, 2026</span>
+          <span class="thin-rule"></span>
+        </div>
+        <h1 class="fade-seq" style="--delay: 0.6s">
+          <em>35 Years</em>
+        </h1>
+        <p class="hero-sub fade-seq" style="--delay: 1s">
+          of Love, Laughter & a Lifetime Together
+        </p>
+        <div class="hero-divider fade-seq" style="--delay: 1.3s">
+          <span class="diamond">◆</span>
+        </div>
+        <p class="hero-caption fade-seq" style="--delay: 1.6s">
+          [Add a short personal message here — a line that describes what these
+          35 years have meant to you]
+        </p>
+        <div class="scroll-hint fade-seq" style="--delay: 2s">
+          <span>Scroll to relive the journey</span>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== INTRO QUOTE ========== -->
+    <section class="intro-quote hidden">
+      <blockquote>
+        <p>
+          "May your love continue to grow under the blessings of the universe."
+        </p>
+        <cite>— Godbole</cite>
+      </blockquote>
+    </section>
+
+    <!-- ========== TIMELINE ========== -->
+    <main class="timeline" id="timeline">
+      <!-- Year 1991 -->
+      <div class="year-marker hidden">
+        <span class="year-number">1991</span>
+        <span class="year-label">The Beginning</span>
+      </div>
+      <article class="memory-card hidden" data-year="1991">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="your-image-1.jpg"
+                alt="The Wedding Day"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">June 8, 1991</span>
+            <h2>The Wedding Day</h2>
+            <p>
+              [Add the story of the wedding day here — where it was, how it
+              felt, what moment you remember most. Make it warm and personal.]
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 1993 -->
+      <div class="year-marker hidden">
+        <span class="year-number">1993</span>
+        <span class="year-label">New Beginnings</span>
+      </div>
+      <article class="memory-card hidden" data-year="1993">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="1997.jpeg"
+                alt="A special memory"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">1993</span>
+            <h2>That Classic '90s Charm</h2>
+            <p>
+              The classic mustache and that beautiful yellow saree! Just a
+              couple of years after tying the knot, this is a perfect glimpse
+              into the 90s. Fashion changes, but the warmth in those smiles has
+              stayed exactly the same.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 1995 -->
+      <div class="year-marker hidden">
+        <span class="year-number">1995</span>
+        <span class="year-label">Growing Together</span>
+      </div>
+      <article class="memory-card hidden" data-year="1995">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2010.jpg"
+                alt="A special vacation"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">1995</span>
+            <h2>Settling Into Forever</h2>
+            <p>
+              Four years into the journey! There is such a wonderful sense of
+              comfort and partnership in this photo. You can see the deep, quiet
+              bond of two people who have truly settled into being an incredible
+              team.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2000 -->
+      <div class="year-marker hidden">
+        <span class="year-number">2000</span>
+        <span class="year-label">A New Century</span>
+      </div>
+      <article class="memory-card hidden" data-year="2000">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2006.jpeg"
+                alt="The turn of the millennium"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2000</span>
+            <h2>Stepping Into The 2000s</h2>
+            <p>
+              A timless portrait for a milestone year. Dressed up and looking
+              towards the future.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2005 -->
+      <div class="year-marker hidden">
+        <span class="year-number">2005</span>
+        <span class="year-label">The Heart of It</span>
+      </div>
+      <article class="memory-card hidden" data-year="2005">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2009.jpg"
+                alt="Family gathering"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2005</span>
+            <h2>Where It Was Always Going</h2>
+            <p>
+              Look at them — laughing without knowing how loved this moment
+              would one day feel. Some photographs don't just capture a day.
+              They capture a forever.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2010 -->
+      <div class="year-marker hidden">
+        <span class="year-number">2010</span>
+        <span class="year-label">Silver Threads</span>
+      </div>
+      <article class="memory-card hidden" data-year="2010">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2010.jpg"
+                alt="Special memory 2010"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2010</span>
+            <h2>[Memory Title Here]</h2>
+            <p>
+              [What made 2010 special? A big family event, a holiday, a personal
+              triumph? Add something that shows how much they have shared and
+              built together by this point.]
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2016 (Quarter Century) -->
+      <div class="year-marker hidden">
+        <span class="year-number">2016</span>
+        <span class="year-label">Quarter Century</span>
+      </div>
+
+      <!-- First 2016 Photo -->
+      <article class="memory-card hidden" data-year="2016">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2015.jpg"
+                alt="25th anniversary"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2016 — 25 Years</span>
+            <h2>Twenty-Five and Still Laughing</h2>
+            <p>
+              Dressed up, seated like royalty, and still managing to look like themselves. That's the whole secret, really.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Second 2016 Photo -->
+      <article class="memory-card hidden" data-year="2016">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2015.2.jpg"
+                alt="25th anniversary"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2016 — 25 Years</span>
+            <h2>Same People, More Love</h2>
+            <p>
+              Twenty-five years in and he still puts his arm around her the same way. Some things just don't change — and you're glad they don't.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2017 -->
+      <div class="year-marker hidden">
+        <span class="year-number">2017</span>
+        <span class="year-label">Chapter 26</span>
+      </div>
+
+      <!-- First 2017 Photo -->
+      <article class="memory-card hidden" data-year="2017">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2017.jpg"
+                alt="26th anniversary"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2017 — 26 Years</span>
+            <h2>Year 26, Still Cleaning Up Nicely</h2>
+            <p>
+              Dressed up for a night out, and somehow still the best-looking people in the room. Twenty-six years and they haven't lost the knack.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2017 -->
+      <div class="year-marker hidden">
+        <span class="year-number">2018</span>
+        <span class="year-label">STILL LAUGHING</span>
+      </div>
+
+      <!-- First 2018 Photo -->
+      <article class="memory-card hidden" data-year="2018">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2018.jpg"
+                alt="26th anniversary"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2018 — 27 Years</span>
+            <h2>That Laugh Says It All</h2>
+            <p>
+              Twenty-seven years in and he can still make her laugh like that. Some things just get better with time.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2020 -->
+      <div class="year-marker hidden">
+        <span class="year-number">2019</span>
+        <span class="year-label">CHAPTER 50</span>
+      </div>
+      <article class="memory-card hidden" data-year="2020">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2021.jpg"
+                alt="Together through it all"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2019</span>
+            <h2>2019 Wasn't All Bad</h2>
+            <p>
+              She turns 50 and there was no way they were missing it. That's just who they are — always there, always dressed for the occasion, always the ones you want in the room.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2020 -->
+      <div class="year-marker hidden">
+        <span class="year-number">2023</span>
+        <span class="year-label">CHAPTER 60</span>
+      </div>
+      <article class="memory-card hidden" data-year="2020">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2023.jpg"
+                alt="Together through it all"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date">2023</span>
+            <h2>Sixty Never Looked This Good</h2>
+            <p>
+              Sixty years of a life well lived, and they showed up to honour every single one of them. That's the thing about family — the big moments never pass quietly.
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Year 2026 -->
+      <div class="year-marker hidden">
+        <span class="year-number">2026</span>
+        <span class="year-label">Today & Always</span>
+      </div>
+      <article class="memory-card hidden card-last" data-year="2026">
+        <div class="card-inner">
+          <div class="image-thumb-wrap">
+            <div class="image-thumb" onclick="openLightbox(this)">
+              <img
+                src="2026.jpeg"
+                alt="Today"
+                onerror="this.parentElement.classList.add('no-img')"
+              />
+              <div class="thumb-overlay">
+                <span class="zoom-icon">⊕</span>
+                <span class="zoom-label">View Photo</span>
+              </div>
+            </div>
+            <div class="polaroid-shadow"></div>
+          </div>
+          <div class="text-block">
+            <span class="card-date" style="color: #b9fdff">June 8, 2026</span>
+            <h2>35 & Forever</h2>
+            <p>
+              [End on the most personal note. Write what you most want them to
+              know — what their love has meant to you, what you hope the next 35
+              years look like, or simply what makes them special. This one
+              should be from the heart.]
+            </p>
+            <div class="card-flourish">◆</div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- ========== CLOSING SECTION ========== -->
+    <section class="closing hidden">
+      <div class="closing-inner">
+        <div class="heart-anim">♥</div>
+        <h2>Here's to Every Year</h2>
+        <p class="closing-sub">
+          [A short closing line — a toast, a wish, or a simple "we love you
+          both" — from whoever made this]
+        </p>
+        <div class="year-count">
+          <span class="big-number">35</span>
+          <span class="big-label">Years of Forever</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-bar hidden">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <span class="stat-num" data-target="35">35</span>
+          <span class="stat-label">Years</span>
+        </div>
+        <div class="stat-sep">◆</div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="12784">12,784</span>
+          <span class="stat-label">Days Together</span>
+        </div>
+        <div class="stat-sep">◆</div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="1">1</span>
+          <span class="stat-label">Lifetime of Love</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Made with love for the celebration on June 7th, 2026 ♥
+        &copy;Godbole Family
+      </p>
+    </footer>
+
+    <!-- ========== LIGHTBOX ========== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+      <div class="lightbox-inner">
+        <button class="lb-close" onclick="closeLightbox()">✕</button>
+        <img id="lb-img" src="" alt="" />
+        <p id="lb-caption"></p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
