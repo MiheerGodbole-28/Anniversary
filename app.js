@@ -335,6 +335,7 @@ viewport.addEventListener("touchend", endDrag);
     isAutoScrolling = true;
     autoBtn.textContent = "⏸";
     autoBtn.classList.add("active");
+    document.querySelector(".gallery-strip").classList.add("autoscrolling");
 
     autoScrollInterval = setInterval(() => {
       const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 10;
@@ -353,6 +354,7 @@ viewport.addEventListener("touchend", endDrag);
     autoScrollInterval = null;
     autoBtn.textContent = "▶";
     autoBtn.classList.remove("active");
+    document.querySelector(".gallery-strip").classList.remove("autoscrolling");
   }
 
   autoBtn.addEventListener("click", () => {

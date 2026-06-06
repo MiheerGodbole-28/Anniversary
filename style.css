@@ -1095,7 +1095,7 @@ footer {
   will-change: transform;
 }
 
-.gallery-strip:hover .gallery-track {
+.gallery-strip:not(.autoscrolling):hover .gallery-track {
   animation-play-state: paused;
 }
 
