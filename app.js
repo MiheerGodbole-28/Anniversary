@@ -238,4 +238,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
     statsObserver.observe(statsSection);
   }
+
+  // ——————————————————————————
+  //  7. MANUAL CAROUSEL DRAGGING
+  // ——————————————————————————
+  const track = document.querySelector(".gallery-track");
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  let resumeTimer;
+
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    track.classList.add("manual-mode");
+    clearTimeout(resumeTimer); // Stop the auto-resume if we touch again
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+
+  track.addEventListener("mouseleave", () => {
+    isDown = false;
+    // Set a timer to resume auto-scroll after 3 seconds of inactivity
+    resumeTimer = setTimeout(() => track.classList.remove("manual-mode"), 3000);
+  });
+
+  track.addEventListener("mouseup", () => {
+    isDown = false;
+    resumeTimer = setTimeout(() => track.classList.remove("manual-mode"), 3000);
+  });
+
+  track.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 2; // scroll speed multiplier
+    track.scrollLeft = scrollLeft - walk;
+  });
+
+  // Touch support for phones
+  track.addEventListener("touchstart", () => {
+    track.classList.add("manual-mode");
+    clearTimeout(resumeTimer);
+  });
+
+  track.addEventListener("touchend", () => {
+    resumeTimer = setTimeout(() => track.classList.remove("manual-mode"), 3000);
+  });
 });
