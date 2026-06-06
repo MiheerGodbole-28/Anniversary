@@ -242,46 +242,45 @@ document.addEventListener("DOMContentLoaded", () => {
   // ——————————————————————————
   //  7. MANUAL CAROUSEL DRAGGING
   // ——————————————————————————
-  const track = document.querySelector(".gallery-track");
+  const viewport = document.querySelector(".gallery-viewport");
   let isDown = false;
   let startX;
   let scrollLeft;
   let resumeTimer;
 
-  track.addEventListener("mousedown", (e) => {
+  viewport.addEventListener("mousedown", (e) => {
     isDown = true;
-    track.classList.add("manual-mode");
-    clearTimeout(resumeTimer); // Stop the auto-resume if we touch again
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
+    viewport.classList.add("manual-mode");
+    clearTimeout(resumeTimer);
+    startX = e.pageX - viewport.offsetLeft;
+    scrollLeft = viewport.scrollLeft;
   });
 
-  track.addEventListener("mouseleave", () => {
+  viewport.addEventListener("mouseleave", () => {
     isDown = false;
-    // Set a timer to resume auto-scroll after 3 seconds of inactivity
-    resumeTimer = setTimeout(() => track.classList.remove("manual-mode"), 3000);
+    resumeTimer = setTimeout(() => viewport.classList.remove("manual-mode"), 3000);
   });
 
-  track.addEventListener("mouseup", () => {
+  viewport.addEventListener("mouseup", () => {
     isDown = false;
-    resumeTimer = setTimeout(() => track.classList.remove("manual-mode"), 3000);
+    resumeTimer = setTimeout(() => viewport.classList.remove("manual-mode"), 3000);
   });
 
-  track.addEventListener("mousemove", (e) => {
+  viewport.addEventListener("mousemove", (e) => {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    const walk = (x - startX) * 2; // scroll speed multiplier
-    track.scrollLeft = scrollLeft - walk;
+    const x = e.pageX - viewport.offsetLeft;
+    const walk = (x - startX) * 2;
+    viewport.scrollLeft = scrollLeft - walk;
   });
 
   // Touch support for phones
-  track.addEventListener("touchstart", () => {
-    track.classList.add("manual-mode");
+  viewport.addEventListener("touchstart", () => {
+    viewport.classList.add("manual-mode");
     clearTimeout(resumeTimer);
   });
 
-  track.addEventListener("touchend", () => {
-    resumeTimer = setTimeout(() => track.classList.remove("manual-mode"), 3000);
+  viewport.addEventListener("touchend", () => {
+    resumeTimer = setTimeout(() => viewport.classList.remove("manual-mode"), 3000);
   });
 });

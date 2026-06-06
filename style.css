@@ -972,43 +972,38 @@ footer {
   z-index: 2;
   padding: 40px 0 80px;
   overflow: hidden;
-  cursor: grab; /* Shows the user they can grab it */
 }
 
-.gallery-strip h2 {
-  font-family: var(--ff-display);
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--ink);
-  text-align: center;
-  margin-bottom: 30px;
+.gallery-viewport {
+  width: 100%;
+  overflow-x: hidden; /* Hide scrollbars */
+  cursor: grab;
 }
+
+/* When dragging, allow scroll and stop the animation */
+.gallery-viewport.manual-mode {
+  overflow-x: auto;
+  cursor: grabbing;
+}
+
+.gallery-viewport.manual-mode .gallery-track {
+  animation: none !important;
+  transform: none !important; /* Prevents the jump */
+}
+
+/* Hide scrollbar */
+.gallery-viewport::-webkit-scrollbar { display: none; }
 
 .gallery-track {
   display: flex;
   gap: 1.6rem;
   padding: 1rem 2rem;
   width: max-content;
-  /* Auto-scroll enabled by default */
   animation: scrollGallery 20s linear infinite;
   will-change: transform;
 }
 
-/* When in manual mode, CSS animation stops and we allow native scrolling */
-.gallery-track.manual-mode {
-  animation: none !important;
-  overflow-x: auto;
-  cursor: grabbing;
-}
-
-/* Hide scrollbar for Chrome/Safari/Edge */
-.gallery-track::-webkit-scrollbar {
-  display: none;
-}
-
-/* Pauses the scrolling when someone hovers over it with a mouse */
-.gallery-track:hover {
+.gallery-strip:hover .gallery-track {
   animation-play-state: paused;
 }
 
