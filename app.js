@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       root: null,
-      threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px",
+      threshold: 0.05,
+      rootMargin: "0px 0px -20% 0px",
     },
   );
 
@@ -321,4 +321,53 @@ viewport.addEventListener("mouseleave", () => { if (!isDragging) return; }); // 
 viewport.addEventListener("touchstart", (e) => startDrag(e.touches[0].pageX), { passive: true });
 viewport.addEventListener("touchmove", (e) => moveDrag(e.touches[0].pageX), { passive: true });
 viewport.addEventListener("touchend", endDrag);
+
+  // ——————————————————————————
+  //  8. AUTO SCROLL SLIDESHOW
+  // ——————————————————————————
+  const autoBtn = document.getElementById("autoscroll-btn");
+  let autoScrollInterval = null;
+  let isAutoScrolling = false;
+
+  const SCROLL_SPEED = 1.5;
+
+  function startAutoScroll() {
+    isAutoScrolling = true;
+    autoBtn.textContent = "⏸";
+    autoBtn.classList.add("active");
+
+    autoScrollInterval = setInterval(() => {
+      const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 10;
+      if (atBottom) {
+        stopAutoScroll();
+        autoBtn.textContent = "✓";
+        return;
+      }
+      window.scrollBy(0, SCROLL_SPEED);
+    }, 16);
+  }
+
+  function stopAutoScroll() {
+    isAutoScrolling = false;
+    clearInterval(autoScrollInterval);
+    autoScrollInterval = null;
+    autoBtn.textContent = "▶";
+    autoBtn.classList.remove("active");
+  }
+
+  autoBtn.addEventListener("click", () => {
+    if (isAutoScrolling) {
+      stopAutoScroll();
+    } else {
+      startAutoScroll();
+    }
+  });
+
+  window.addEventListener("wheel", () => {
+    if (isAutoScrolling) stopAutoScroll();
+  }, { passive: true });
+
+  window.addEventListener("touchmove", () => {
+    if (isAutoScrolling) stopAutoScroll();
+  }, { passive: true });
 });

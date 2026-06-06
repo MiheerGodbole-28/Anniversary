@@ -216,7 +216,7 @@ body {
 .hero-caption {
   font-family: var(--ff-body);
   font-weight: 300;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   color: var(--ink-soft);
   letter-spacing: 0.5px;
   line-height: 1.7;
@@ -618,7 +618,7 @@ body {
     var(--parchment) 50%,
     var(--rose-gold) 100%
   );
-  padding: 120px 40px;
+  padding: 60px 40px 30px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -652,7 +652,7 @@ body {
   font-size: 2.5rem;
   color: #b5636e;
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
   animation: heartBeat 2.4s ease-in-out infinite;
 }
 
@@ -687,7 +687,7 @@ body {
 .closing-sub {
   font-family: var(--ff-body);
   font-weight: 300;
-  font-size: 1.25rem;
+  font-size: 1.65rem;
   color: var(--ink-soft);
   font-style: italic;
   line-height: 1.7;
@@ -919,6 +919,41 @@ footer {
   .stat-sep {
     display: none;
   }
+}
+
+/* =========================================
+   AUTO SCROLL BUTTON
+   ========================================= */
+#autoscroll-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+#autoscroll-btn:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+#autoscroll-btn.active {
+  opacity: 1;
+  background: var(--rose-gold);
 }
 
 @media (max-width: 480px) {
